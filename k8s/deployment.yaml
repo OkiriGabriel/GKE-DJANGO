@@ -1,0 +1,20 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webregi-v2-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webregi-v2-app
+  template:
+    metadata:
+      labels:
+        app: webregi-v2-app
+    spec:
+      containers:
+      - name: webregi-v2-app
+        image: regiapriandi012/bismillah-final-deploykube:latest
+        ports:
+        - containerPort: 8000
