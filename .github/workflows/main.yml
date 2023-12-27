@@ -42,7 +42,7 @@ jobs:
         
     - name: Push Docker image  
       run: |
-        docker tag myapp gabeokiri/django-app:latest
+        docker tag django-app gabeokiri/django-app:latest
         docker push gabeokiri/django-app:latest
     # - name: Deploy to production server
     #   uses: appleboy/ssh-action@master
