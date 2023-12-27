@@ -44,12 +44,29 @@ jobs:
       run: |
         docker tag django-app gabeokiri/django-app:latest
         docker push gabeokiri/django-app:latest
-    # - name: Deploy to production server
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.SERVER_HOST }}
-    #     username: ${{ secrets.SERVER_USERNAME }} 
-    #     key: ${{ secrets.SERVER_KEY }}
-    #     script: |
-    #       sudo systemctl stop gunicorn
-    #       sudo systemctl start gunicornclar
+
+    - name: Setup Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+
+    - name: Authenticate to GKE  
+      uses: google-github-actions/get-gke-credentials@main
+      with: 
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
+
+    - name: Deploy to GKE
+      run: |
+        gcloud deployment-manager deployments create my-deployment \
+          --template=template-file  
+      
+    - name: Add secrets
+      uses: google-github-actions/get-secretmanager-secrets@main
+      with:
+        secrets: app-secret   
+      
+    - name: Expose service
+      run: |
+        kubectl expose deployment/deployment-name \
+          --type=LoadBalancer \
+          --port 80 \
+          --target-port 8080
