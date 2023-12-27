@@ -32,3 +32,9 @@ Set up a GitHub Actions workflow for the application to be automatically deploye
 - Include documentation that explains the setup, rationale behind design choices, and steps for scaling and securing the application.
 
 This assessment aims to evaluate your ability to implement DevOps practices effectively and make informed decisions in configuring and securing a GKE deployment. Feel free to dazzle with your solutions. Good luck!
+
+
+docker push gabeokiri/django-app:lastest
+$ docker build -t django-app.
+ docker tag jango-app gabeokiri/django-app:lastest
+$ docker push gabeokiri/django-app:lastest

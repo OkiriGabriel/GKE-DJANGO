@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-app-migrate
+spec:
+  template:
+    spec:
+      containers:
+        - name: django-app
+          image: gabeokiri/django-app:latest
+          command: ["/bin/sh","-c"]
+          args: ["python manage.py makemigrations django-app && python manage.py migrate"]
+      restartPolicy: Never
+  backoffLimit: 5

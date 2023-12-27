@@ -30,6 +30,7 @@ jobs:
     - name: Collect static files
       run: |  
         python manage.py collectstatic --no-input
+    
 
     # - name: Deploy to production server
     #   uses: appleboy/ssh-action@master
@@ -39,4 +40,4 @@ jobs:
     #     key: ${{ secrets.SERVER_KEY }}
     #     script: |
     #       sudo systemctl stop gunicorn
-    #       sudo systemctl start gunicorn
+    #       sudo systemctl start gunicornclar

@@ -1,20 +1,19 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webregi-v2-app
+  name: django-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webregi-v2-app
+      app: django-app
   template:
     metadata:
       labels:
-        app: webregi-v2-app
+        app: django-app
     spec:
       containers:
-      - name: webregi-v2-app
-        image: regiapriandi012/bismillah-final-deploykube:latest
+      - name: django-app
+        image: gabeokiri/django-app:latest
         ports:
         - containerPort: 8000
